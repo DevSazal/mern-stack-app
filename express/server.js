@@ -20,8 +20,8 @@ connection.once('open', () => {
 });
 
 // initialize route point
-app.use('/exercise', require('./routes/exercise'));
-app.use('/user', require('./routes/user'));
+app.use('/api/exercise', require('./routes/exercise'));
+app.use('/api/user', require('./routes/user'));
 
 // Run ExpressJS Server
 app.listen(port, () => {
