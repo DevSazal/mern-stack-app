@@ -38,6 +38,7 @@ let Exercise = require('../models/exercise.model');
 
   router.route('/search/:username').get((req, res) => {
     Exercise.find({ username: req.params.username})
+      .sort({'_id': -1}) // sort(descending by _id) data in mongoose
       .then(exercises => res.json(exercises))
       .catch(err => res.status(400).json('Error: ' + err));
   });
