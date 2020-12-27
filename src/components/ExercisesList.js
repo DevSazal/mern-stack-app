@@ -10,7 +10,7 @@ const Exercise = props => (
     <td>{props.exercise.duration}</td>
     <td>{props.exercise.date.substring(0,10)}</td>
     <td>
-      <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="" onClick={() => { props.deleteExercise(props.exercise._id, props.index) }}>delete</a>
+      <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id, props.index) }}>delete</a>
     </td>
   </tr>
 )
@@ -22,7 +22,7 @@ class ExercisesList extends Component {
     this.state = {
       exercises: []
     };
-
+    this.deleteExercise = this.deleteExercise.bind(this);
   }
 
   componentDidMount() {
@@ -39,12 +39,12 @@ class ExercisesList extends Component {
     api().delete('/exercise/'+id)
       .then(response => { console.log(response.data)});
 
-    // // this.setState({
-    // //   exercises: this.state.exercises.filter(el => el._id !== id)
-    // // })
-    // let exercises = this.state.exercises;
-    // exercises.splice(index, 1);
-    // this.setState({ exercises: exercises });
+    // this.setState({
+    //   exercises: this.state.exercises.filter(el => el._id !== id)
+    // })
+    let exercises = this.state.exercises;
+    exercises.splice(index, 1); // Delete one element by array index number from react state
+    this.setState({ exercises: exercises });
     console.log('deleted '+index);
   }
 
