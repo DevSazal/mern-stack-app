@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import api from './api';
+import moment from 'moment';
 
 // Another Functional Component
 const Exercise = props => (
@@ -8,7 +9,7 @@ const Exercise = props => (
     <td>{props.exercise.username}</td>
     <td>{props.exercise.description}</td>
     <td>{props.exercise.duration}</td>
-    <td>{props.exercise.date.substring(0,10)}</td>
+    <td>{moment(props.exercise.date).format('LLL')}</td>
     <td>
       <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id, props.index) }}>delete</a>
     </td>
@@ -58,6 +59,7 @@ class ExercisesList extends Component {
     return(
       <div>
         <h3>Logged Exercises</h3>
+        <b>{moment().format('MMMM Do YYYY, h:mm A')}</b>
         <br/>
         <table className="table">
           <thead className="thead-light">
